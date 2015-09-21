@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="toast_rotation_locked">Skrin kini dikunci dalam orientasi landskap.</string>
+    <item type="string" name="APKTOOL_DUMMY_0162">false</item>
+    <item type="string" name="APKTOOL_DUMMY_0163">false</item>
+    <item type="string" name="APKTOOL_DUMMY_016f">false</item>
+    <item type="string" name="APKTOOL_DUMMY_0170">false</item>
+    <item type="string" name="APKTOOL_DUMMY_0171">false</item>
+    <item type="string" name="APKTOOL_DUMMY_0172">false</item>
+    <item type="string" name="APKTOOL_DUMMY_0173">false</item>
+    <item type="string" name="APKTOOL_DUMMY_0174">false</item>
+    <item type="string" name="APKTOOL_DUMMY_0175">false</item>
+    <item type="string" name="APKTOOL_DUMMY_0176">false</item>
+    <item type="string" name="APKTOOL_DUMMY_0177">false</item>
+    <item type="string" name="APKTOOL_DUMMY_0178">false</item>
+    <item type="string" name="APKTOOL_DUMMY_0179">false</item>
+    <item type="string" name="APKTOOL_DUMMY_020c">false</item>
+    <item type="string" name="APKTOOL_DUMMY_020d">false</item>
+    <item type="string" name="APKTOOL_DUMMY_020e">false</item>
+</resources>
