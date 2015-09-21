@@ -38,7 +38,7 @@
     <bool name="doze_pulse_on_notifications">true</bool>
     <bool name="doze_pickup_performs_proximity_check">false</bool>
     <bool name="config_showTaskManagerSwitcher">false</bool>
-    <bool name="config_enableDataSwitch">false</bool>
+    <bool name="config_enableDataSwitch">true</bool>
     <bool name="enable_volume_ui">true</bool>
     <item type="bool" name="config_enableLockScreenRotation">@android:bool/config_enableLockScreenRotation</item>
     <item type="bool" name="config_enableLockScreenTranslucentDecor">@android:bool/config_enableLockScreenTranslucentDecor</item>
