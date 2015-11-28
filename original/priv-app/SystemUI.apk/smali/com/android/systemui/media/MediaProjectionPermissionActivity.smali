@@ -173,215 +173,529 @@
 .end method
 
 .method public onCreate(Landroid/os/Bundle;)V
-    .locals 9
+    .locals 24
     .param p1    # Landroid/os/Bundle;
 
-    const/4 v8, 0x0
+    invoke-super/range {p0 .. p1}, Landroid/app/Activity;->onCreate(Landroid/os/Bundle;)V
 
-    invoke-super {p0, p1}, Landroid/app/Activity;->onCreate(Landroid/os/Bundle;)V
+    invoke-virtual/range {p0 .. p0}, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->getCallingPackage()Ljava/lang/String;
 
-    invoke-virtual {p0}, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->getCallingPackage()Ljava/lang/String;
+    move-result-object v20
 
-    move-result-object v5
+    move-object/from16 v0, v20
 
-    iput-object v5, p0, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->mPackageName:Ljava/lang/String;
+    move-object/from16 v1, p0
 
-    const-string v5, "media_projection"
+    iput-object v0, v1, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->mPackageName:Ljava/lang/String;
 
-    invoke-static {v5}, Landroid/os/ServiceManager;->getService(Ljava/lang/String;)Landroid/os/IBinder;
+    const-string v20, "media_projection"
 
-    move-result-object v2
+    invoke-static/range {v20 .. v20}, Landroid/os/ServiceManager;->getService(Ljava/lang/String;)Landroid/os/IBinder;
 
-    invoke-static {v2}, Landroid/media/projection/IMediaProjectionManager$Stub;->asInterface(Landroid/os/IBinder;)Landroid/media/projection/IMediaProjectionManager;
+    move-result-object v8
 
-    move-result-object v5
+    invoke-static {v8}, Landroid/media/projection/IMediaProjectionManager$Stub;->asInterface(Landroid/os/IBinder;)Landroid/media/projection/IMediaProjectionManager;
 
-    iput-object v5, p0, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->mService:Landroid/media/projection/IMediaProjectionManager;
+    move-result-object v20
 
-    iget-object v5, p0, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->mPackageName:Ljava/lang/String;
+    move-object/from16 v0, v20
 
-    if-nez v5, :cond_0
+    move-object/from16 v1, p0
 
-    invoke-virtual {p0}, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->finish()V
+    iput-object v0, v1, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->mService:Landroid/media/projection/IMediaProjectionManager;
+
+    move-object/from16 v0, p0
+
+    iget-object v0, v0, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->mPackageName:Ljava/lang/String;
+
+    move-object/from16 v20, v0
+
+    if-nez v20, :cond_0
+
+    invoke-virtual/range {p0 .. p0}, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->finish()V
 
     :goto_0
     return-void
 
     :cond_0
-    invoke-virtual {p0}, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->getPackageManager()Landroid/content/pm/PackageManager;
+    invoke-virtual/range {p0 .. p0}, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->getPackageManager()Landroid/content/pm/PackageManager;
+
+    move-result-object v16
+
+    :try_start_0
+    move-object/from16 v0, p0
+
+    iget-object v0, v0, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->mPackageName:Ljava/lang/String;
+
+    move-object/from16 v20, v0
+
+    const/16 v21, 0x0
+
+    move-object/from16 v0, v16
+
+    move-object/from16 v1, v20
+
+    move/from16 v2, v21
+
+    invoke-virtual {v0, v1, v2}, Landroid/content/pm/PackageManager;->getApplicationInfo(Ljava/lang/String;I)Landroid/content/pm/ApplicationInfo;
 
     move-result-object v4
 
-    :try_start_0
-    iget-object v5, p0, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->mPackageName:Ljava/lang/String;
+    iget v0, v4, Landroid/content/pm/ApplicationInfo;->uid:I
 
-    const/4 v6, 0x0
+    move/from16 v20, v0
 
-    invoke-virtual {v4, v5, v6}, Landroid/content/pm/PackageManager;->getApplicationInfo(Ljava/lang/String;I)Landroid/content/pm/ApplicationInfo;
+    move/from16 v0, v20
 
-    move-result-object v0
+    move-object/from16 v1, p0
 
-    iget v5, v0, Landroid/content/pm/ApplicationInfo;->uid:I
-
-    iput v5, p0, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->mUid:I
+    iput v0, v1, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->mUid:I
     :try_end_0
     .catch Landroid/content/pm/PackageManager$NameNotFoundException; {:try_start_0 .. :try_end_0} :catch_1
 
     :try_start_1
-    iget-object v5, p0, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->mService:Landroid/media/projection/IMediaProjectionManager;
+    move-object/from16 v0, p0
 
-    iget v6, p0, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->mUid:I
+    iget-object v0, v0, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->mService:Landroid/media/projection/IMediaProjectionManager;
 
-    iget-object v7, p0, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->mPackageName:Ljava/lang/String;
+    move-object/from16 v20, v0
 
-    invoke-interface {v5, v6, v7}, Landroid/media/projection/IMediaProjectionManager;->hasProjectionPermission(ILjava/lang/String;)Z
+    move-object/from16 v0, p0
 
-    move-result v5
+    iget v0, v0, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->mUid:I
 
-    if-eqz v5, :cond_1
+    move/from16 v21, v0
 
-    const/4 v5, -0x1
+    move-object/from16 v0, p0
 
-    iget v6, p0, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->mUid:I
+    iget-object v0, v0, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->mPackageName:Ljava/lang/String;
 
-    iget-object v7, p0, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->mPackageName:Ljava/lang/String;
+    move-object/from16 v22, v0
 
-    const/4 v8, 0x0
+    invoke-interface/range {v20 .. v22}, Landroid/media/projection/IMediaProjectionManager;->hasProjectionPermission(ILjava/lang/String;)Z
 
-    invoke-direct {p0, v6, v7, v8}, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->getMediaProjectionIntent(ILjava/lang/String;Z)Landroid/content/Intent;
+    move-result v20
 
-    move-result-object v6
+    if-eqz v20, :cond_1
 
-    invoke-virtual {p0, v5, v6}, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->setResult(ILandroid/content/Intent;)V
+    const/16 v20, -0x1
 
-    invoke-virtual {p0}, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->finish()V
+    move-object/from16 v0, p0
+
+    iget v0, v0, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->mUid:I
+
+    move/from16 v21, v0
+
+    move-object/from16 v0, p0
+
+    iget-object v0, v0, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->mPackageName:Ljava/lang/String;
+
+    move-object/from16 v22, v0
+
+    const/16 v23, 0x0
+
+    move-object/from16 v0, p0
+
+    move/from16 v1, v21
+
+    move-object/from16 v2, v22
+
+    move/from16 v3, v23
+
+    invoke-direct {v0, v1, v2, v3}, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->getMediaProjectionIntent(ILjava/lang/String;Z)Landroid/content/Intent;
+
+    move-result-object v21
+
+    move-object/from16 v0, p0
+
+    move/from16 v1, v20
+
+    move-object/from16 v2, v21
+
+    invoke-virtual {v0, v1, v2}, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->setResult(ILandroid/content/Intent;)V
+
+    invoke-virtual/range {p0 .. p0}, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->finish()V
     :try_end_1
     .catch Landroid/os/RemoteException; {:try_start_1 .. :try_end_1} :catch_0
 
     goto :goto_0
 
     :catch_0
-    move-exception v3
+    move-exception v11
 
-    const-string v5, "MediaProjectionPermissionActivity"
+    const-string v20, "MediaProjectionPermissionActivity"
 
-    const-string v6, "Error checking projection permissions"
+    const-string v21, "Error checking projection permissions"
 
-    invoke-static {v5, v6, v3}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+    move-object/from16 v0, v20
 
-    invoke-virtual {p0}, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->finish()V
+    move-object/from16 v1, v21
+
+    invoke-static {v0, v1, v11}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+
+    invoke-virtual/range {p0 .. p0}, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->finish()V
 
     goto :goto_0
 
     :catch_1
-    move-exception v3
+    move-exception v11
 
-    const-string v5, "MediaProjectionPermissionActivity"
+    const-string v20, "MediaProjectionPermissionActivity"
 
-    const-string v6, "unable to look up package name"
+    const-string v21, "unable to look up package name"
 
-    invoke-static {v5, v6, v3}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+    move-object/from16 v0, v20
 
-    invoke-virtual {p0}, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->finish()V
+    move-object/from16 v1, v21
 
-    goto :goto_0
+    invoke-static {v0, v1, v11}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    :cond_1
-    invoke-virtual {v0, v4}, Landroid/content/pm/ApplicationInfo;->loadLabel(Landroid/content/pm/PackageManager;)Ljava/lang/CharSequence;
-
-    move-result-object v5
-
-    invoke-interface {v5}, Ljava/lang/CharSequence;->toString()Ljava/lang/String;
-
-    move-result-object v1
-
-    new-instance v5, Landroid/app/AlertDialog$Builder;
-
-    invoke-direct {v5, p0}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
-
-    invoke-virtual {v0, v4}, Landroid/content/pm/ApplicationInfo;->loadIcon(Landroid/content/pm/PackageManager;)Landroid/graphics/drawable/Drawable;
-
-    move-result-object v6
-
-    invoke-virtual {v5, v6}, Landroid/app/AlertDialog$Builder;->setIcon(Landroid/graphics/drawable/Drawable;)Landroid/app/AlertDialog$Builder;
-
-    move-result-object v5
-
-    const v6, 0x7f0c0135
-
-    const/4 v7, 0x1
-
-    new-array v7, v7, [Ljava/lang/Object;
-
-    aput-object v1, v7, v8
-
-    invoke-virtual {p0, v6, v7}, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->getString(I[Ljava/lang/Object;)Ljava/lang/String;
-
-    move-result-object v6
-
-    invoke-virtual {v5, v6}, Landroid/app/AlertDialog$Builder;->setMessage(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;
-
-    move-result-object v5
-
-    const v6, 0x7f0c0138
-
-    invoke-virtual {v5, v6, p0}, Landroid/app/AlertDialog$Builder;->setPositiveButton(ILandroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
-
-    move-result-object v5
-
-    const/high16 v6, 0x1040000
-
-    invoke-virtual {v5, v6, p0}, Landroid/app/AlertDialog$Builder;->setNegativeButton(ILandroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
-
-    move-result-object v5
-
-    const v6, 0x7f04003e
-
-    invoke-virtual {v5, v6}, Landroid/app/AlertDialog$Builder;->setView(I)Landroid/app/AlertDialog$Builder;
-
-    move-result-object v5
-
-    invoke-virtual {v5, p0}, Landroid/app/AlertDialog$Builder;->setOnCancelListener(Landroid/content/DialogInterface$OnCancelListener;)Landroid/app/AlertDialog$Builder;
-
-    move-result-object v5
-
-    invoke-virtual {v5}, Landroid/app/AlertDialog$Builder;->create()Landroid/app/AlertDialog;
-
-    move-result-object v5
-
-    iput-object v5, p0, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->mDialog:Landroid/app/AlertDialog;
-
-    iget-object v5, p0, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->mDialog:Landroid/app/AlertDialog;
-
-    invoke-virtual {v5}, Landroid/app/AlertDialog;->create()V
-
-    iget-object v5, p0, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->mDialog:Landroid/app/AlertDialog;
-
-    const v6, 0x7f0f011e
-
-    invoke-virtual {v5, v6}, Landroid/app/AlertDialog;->findViewById(I)Landroid/view/View;
-
-    move-result-object v5
-
-    check-cast v5, Landroid/widget/CheckBox;
-
-    invoke-virtual {v5, p0}, Landroid/widget/CheckBox;->setOnCheckedChangeListener(Landroid/widget/CompoundButton$OnCheckedChangeListener;)V
-
-    iget-object v5, p0, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->mDialog:Landroid/app/AlertDialog;
-
-    invoke-virtual {v5}, Landroid/app/AlertDialog;->getWindow()Landroid/view/Window;
-
-    move-result-object v5
-
-    const/16 v6, 0x7d3
-
-    invoke-virtual {v5, v6}, Landroid/view/Window;->setType(I)V
-
-    iget-object v5, p0, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->mDialog:Landroid/app/AlertDialog;
-
-    invoke-virtual {v5}, Landroid/app/AlertDialog;->show()V
+    invoke-virtual/range {p0 .. p0}, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->finish()V
 
     goto/16 :goto_0
+
+    :cond_1
+    new-instance v17, Landroid/text/TextPaint;
+
+    invoke-direct/range {v17 .. v17}, Landroid/text/TextPaint;-><init>()V
+
+    const/high16 v20, 0x42280000    # 42.0f
+
+    move-object/from16 v0, v17
+
+    move/from16 v1, v20
+
+    invoke-virtual {v0, v1}, Landroid/text/TextPaint;->setTextSize(F)V
+
+    move-object/from16 v0, v16
+
+    invoke-virtual {v4, v0}, Landroid/content/pm/ApplicationInfo;->loadLabel(Landroid/content/pm/PackageManager;)Ljava/lang/CharSequence;
+
+    move-result-object v20
+
+    invoke-interface/range {v20 .. v20}, Ljava/lang/CharSequence;->toString()Ljava/lang/String;
+
+    move-result-object v12
+
+    invoke-virtual {v12}, Ljava/lang/String;->length()I
+
+    move-result v13
+
+    const/4 v15, 0x0
+
+    :goto_1
+    if-ge v15, v13, :cond_3
+
+    invoke-virtual {v12, v15}, Ljava/lang/String;->codePointAt(I)I
+
+    move-result v10
+
+    invoke-static {v10}, Ljava/lang/Character;->getType(I)I
+
+    move-result v18
+
+    const/16 v20, 0xd
+
+    move/from16 v0, v18
+
+    move/from16 v1, v20
+
+    if-eq v0, v1, :cond_2
+
+    const/16 v20, 0xf
+
+    move/from16 v0, v18
+
+    move/from16 v1, v20
+
+    if-eq v0, v1, :cond_2
+
+    const/16 v20, 0xe
+
+    move/from16 v0, v18
+
+    move/from16 v1, v20
+
+    if-ne v0, v1, :cond_6
+
+    :cond_2
+    new-instance v20, Ljava/lang/StringBuilder;
+
+    invoke-direct/range {v20 .. v20}, Ljava/lang/StringBuilder;-><init>()V
+
+    const/16 v21, 0x0
+
+    move/from16 v0, v21
+
+    invoke-virtual {v12, v0, v15}, Ljava/lang/String;->substring(II)Ljava/lang/String;
+
+    move-result-object v21
+
+    invoke-virtual/range {v20 .. v21}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v20
+
+    const-string v21, "\u2026"
+
+    invoke-virtual/range {v20 .. v21}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v20
+
+    invoke-virtual/range {v20 .. v20}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v12
+
+    :cond_3
+    invoke-virtual {v12}, Ljava/lang/String;->isEmpty()Z
+
+    move-result v20
+
+    if-eqz v20, :cond_4
+
+    move-object/from16 v0, p0
+
+    iget-object v12, v0, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->mPackageName:Ljava/lang/String;
+
+    :cond_4
+    const/high16 v20, 0x43fa0000    # 500.0f
+
+    sget-object v21, Landroid/text/TextUtils$TruncateAt;->END:Landroid/text/TextUtils$TruncateAt;
+
+    move-object/from16 v0, v17
+
+    move/from16 v1, v20
+
+    move-object/from16 v2, v21
+
+    invoke-static {v12, v0, v1, v2}, Landroid/text/TextUtils;->ellipsize(Ljava/lang/CharSequence;Landroid/text/TextPaint;FLandroid/text/TextUtils$TruncateAt;)Ljava/lang/CharSequence;
+
+    move-result-object v20
+
+    invoke-interface/range {v20 .. v20}, Ljava/lang/CharSequence;->toString()Ljava/lang/String;
+
+    move-result-object v19
+
+    invoke-static {}, Landroid/text/BidiFormatter;->getInstance()Landroid/text/BidiFormatter;
+
+    move-result-object v20
+
+    move-object/from16 v0, v20
+
+    move-object/from16 v1, v19
+
+    invoke-virtual {v0, v1}, Landroid/text/BidiFormatter;->unicodeWrap(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v6
+
+    const v20, 0x7f0c0135
+
+    const/16 v21, 0x1
+
+    move/from16 v0, v21
+
+    new-array v0, v0, [Ljava/lang/Object;
+
+    move-object/from16 v21, v0
+
+    const/16 v22, 0x0
+
+    aput-object v6, v21, v22
+
+    move-object/from16 v0, p0
+
+    move/from16 v1, v20
+
+    move-object/from16 v2, v21
+
+    invoke-virtual {v0, v1, v2}, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->getString(I[Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object v5
+
+    new-instance v14, Landroid/text/SpannableString;
+
+    invoke-direct {v14, v5}, Landroid/text/SpannableString;-><init>(Ljava/lang/CharSequence;)V
+
+    invoke-virtual {v5, v6}, Ljava/lang/String;->indexOf(Ljava/lang/String;)I
+
+    move-result v7
+
+    if-ltz v7, :cond_5
+
+    new-instance v20, Landroid/text/style/StyleSpan;
+
+    const/16 v21, 0x1
+
+    invoke-direct/range {v20 .. v21}, Landroid/text/style/StyleSpan;-><init>(I)V
+
+    invoke-virtual {v6}, Ljava/lang/String;->length()I
+
+    move-result v21
+
+    add-int v21, v21, v7
+
+    const/16 v22, 0x0
+
+    move-object/from16 v0, v20
+
+    move/from16 v1, v21
+
+    move/from16 v2, v22
+
+    invoke-virtual {v14, v0, v7, v1, v2}, Landroid/text/SpannableString;->setSpan(Ljava/lang/Object;III)V
+
+    :cond_5
+    new-instance v20, Landroid/app/AlertDialog$Builder;
+
+    move-object/from16 v0, v20
+
+    move-object/from16 v1, p0
+
+    invoke-direct {v0, v1}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
+
+    move-object/from16 v0, v16
+
+    invoke-virtual {v4, v0}, Landroid/content/pm/ApplicationInfo;->loadIcon(Landroid/content/pm/PackageManager;)Landroid/graphics/drawable/Drawable;
+
+    move-result-object v21
+
+    invoke-virtual/range {v20 .. v21}, Landroid/app/AlertDialog$Builder;->setIcon(Landroid/graphics/drawable/Drawable;)Landroid/app/AlertDialog$Builder;
+
+    move-result-object v20
+
+    move-object/from16 v0, v20
+
+    invoke-virtual {v0, v14}, Landroid/app/AlertDialog$Builder;->setMessage(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;
+
+    move-result-object v20
+
+    const v21, 0x7f0c0138
+
+    move-object/from16 v0, v20
+
+    move/from16 v1, v21
+
+    move-object/from16 v2, p0
+
+    invoke-virtual {v0, v1, v2}, Landroid/app/AlertDialog$Builder;->setPositiveButton(ILandroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
+
+    move-result-object v20
+
+    const/high16 v21, 0x1040000
+
+    move-object/from16 v0, v20
+
+    move/from16 v1, v21
+
+    move-object/from16 v2, p0
+
+    invoke-virtual {v0, v1, v2}, Landroid/app/AlertDialog$Builder;->setNegativeButton(ILandroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
+
+    move-result-object v20
+
+    const v21, 0x7f04003e
+
+    invoke-virtual/range {v20 .. v21}, Landroid/app/AlertDialog$Builder;->setView(I)Landroid/app/AlertDialog$Builder;
+
+    move-result-object v20
+
+    move-object/from16 v0, v20
+
+    move-object/from16 v1, p0
+
+    invoke-virtual {v0, v1}, Landroid/app/AlertDialog$Builder;->setOnCancelListener(Landroid/content/DialogInterface$OnCancelListener;)Landroid/app/AlertDialog$Builder;
+
+    move-result-object v20
+
+    invoke-virtual/range {v20 .. v20}, Landroid/app/AlertDialog$Builder;->create()Landroid/app/AlertDialog;
+
+    move-result-object v20
+
+    move-object/from16 v0, v20
+
+    move-object/from16 v1, p0
+
+    iput-object v0, v1, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->mDialog:Landroid/app/AlertDialog;
+
+    move-object/from16 v0, p0
+
+    iget-object v0, v0, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->mDialog:Landroid/app/AlertDialog;
+
+    move-object/from16 v20, v0
+
+    invoke-virtual/range {v20 .. v20}, Landroid/app/AlertDialog;->create()V
+
+    move-object/from16 v0, p0
+
+    iget-object v0, v0, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->mDialog:Landroid/app/AlertDialog;
+
+    move-object/from16 v20, v0
+
+    const/16 v21, -0x1
+
+    invoke-virtual/range {v20 .. v21}, Landroid/app/AlertDialog;->getButton(I)Landroid/widget/Button;
+
+    move-result-object v9
+
+    invoke-virtual {v9}, Landroid/widget/Button;->getRootView()Landroid/view/View;
+
+    move-result-object v20
+
+    const/16 v21, 0x1
+
+    invoke-virtual/range {v20 .. v21}, Landroid/view/View;->setFilterTouchesWhenObscured(Z)V
+
+    move-object/from16 v0, p0
+
+    iget-object v0, v0, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->mDialog:Landroid/app/AlertDialog;
+
+    move-object/from16 v20, v0
+
+    const v21, 0x7f0f011e
+
+    invoke-virtual/range {v20 .. v21}, Landroid/app/AlertDialog;->findViewById(I)Landroid/view/View;
+
+    move-result-object v20
+
+    check-cast v20, Landroid/widget/CheckBox;
+
+    move-object/from16 v0, v20
+
+    move-object/from16 v1, p0
+
+    invoke-virtual {v0, v1}, Landroid/widget/CheckBox;->setOnCheckedChangeListener(Landroid/widget/CompoundButton$OnCheckedChangeListener;)V
+
+    move-object/from16 v0, p0
+
+    iget-object v0, v0, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->mDialog:Landroid/app/AlertDialog;
+
+    move-object/from16 v20, v0
+
+    invoke-virtual/range {v20 .. v20}, Landroid/app/AlertDialog;->getWindow()Landroid/view/Window;
+
+    move-result-object v20
+
+    const/16 v21, 0x7d3
+
+    invoke-virtual/range {v20 .. v21}, Landroid/view/Window;->setType(I)V
+
+    move-object/from16 v0, p0
+
+    iget-object v0, v0, Lcom/android/systemui/media/MediaProjectionPermissionActivity;->mDialog:Landroid/app/AlertDialog;
+
+    move-object/from16 v20, v0
+
+    invoke-virtual/range {v20 .. v20}, Landroid/app/AlertDialog;->show()V
+
+    goto/16 :goto_0
+
+    :cond_6
+    invoke-static {v10}, Ljava/lang/Character;->charCount(I)I
+
+    move-result v20
+
+    add-int v15, v15, v20
+
+    goto/16 :goto_1
 .end method
 
 .method protected onDestroy()V

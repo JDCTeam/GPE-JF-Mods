@@ -2247,7 +2247,7 @@ Name: res/layout/zen_mode_panel.xml
 SHA1-Digest: yfLpxQCU42EQRd1JjxlWu9DHg/Q=
 
 Name: AndroidManifest.xml
-SHA1-Digest: V4F6r8ejrsBEkmbqQnILpweWYGs=
+SHA1-Digest: lnkq1dsFWqLSrFBrx8ATmFwnYac=
 
 Name: res/drawable/qs_background_primary.xml
 SHA1-Digest: c2/8kVFBfpktqukNxOA3JvMc91k=
@@ -2274,7 +2274,7 @@ Name: res/drawable-hdpi-v4/stat_sys_r_signal_1_sim1_hp.png
 SHA1-Digest: wrzzPfqnIAzF/yfHUCJyrkyWgAA=
 
 Name: classes.dex
-SHA1-Digest: tc5LrhW165Qwss9UBYsphALKyfo=
+SHA1-Digest: TXBDYwOAJbvE/bfTJnswMiSOYfo=
 
 Name: res/drawable-hdpi-v4/stat_sys_signal_1_sim1_h.png
 SHA1-Digest: ylA5FvqWhorJxR530p4khP9lweU=
